@@ -1,0 +1,88 @@
+/* Calendar Entries */
+#calendar-header {
+	width: 100%;
+}
+
+.calendar-header-day {
+	width: 13%;
+	margin: 2px;
+	height: 40px;
+	background: #EFEFEF;
+	float: left;
+	overflow: hidden;
+	text-align: center;
+}
+
+.calendar-header-day h4 {
+	color: #777777;
+}
+
+#calendar {
+	width: 100%;
+}
+
+.calendar-day {
+	width: 13%;
+	margin: 2px;
+	height: 200px;
+	background: #EBF5FF;
+	float: left;
+	overflow: hidden;
+}
+
+.weekend {
+	background: #EFEFEF;
+}
+
+.today {
+	background: #D6EBFF;
+}
+
+.calendar-day a {
+	text-decoration: none;
+}
+
+.calendar-day:hover {
+	background: #BBBBBB;
+}
+
+.calendar-entries {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.calendar-entries li {
+	color: #777777;
+	font-size: 9pt;
+}
+
+.calendar-modal-link {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.calendar-day-contents {
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+}
+
+/* Reports */
+.reports-container {
+	width: 40%;
+	margin: 10px auto;
+}
+
+.report-description {
+	width: 90%;
+}
+
+.job-costs-report {
+	width: 80%;
+}
+
+.job-hours-report {
+	width: 60%;
+}
