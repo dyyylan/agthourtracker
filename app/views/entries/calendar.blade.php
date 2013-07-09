@@ -64,8 +64,11 @@
 					<label for="job_number">Job number:</label>
 					<select name="job_number" id="job_number">
 						<option value="">Select...</option>
-						<option value="12GS03">12GS03</option>
-						<option value="13SEST">13SEST</option>
+						@foreach ($jobNumbers as $jobNumber)
+							<option value="{{ $jobNumber->jobnumber }}">
+								{{ $jobNumber->jobnumber }} :: {{ $jobNumber->projectdescription }}
+							</option>
+						@endforeach
 					</select>
 				</div>
 
@@ -73,10 +76,11 @@
 					<label for="cost_code">Cost code:</label>
 					<select name="cost_code" id="cost_code">
 						<option value="">Select...</option>
-						<option value="0001: Test cost code 1">0001: Test cost code 1</option>
-						<option value="0002: Test cost code 2">0002: Test cost code 2</option>
-						<option value="0003: Test cost code 3">0003: Test cost code 3</option>
-						<option value="0004: Test cost code 4">0004: Test cost code 4</option>
+						@foreach ($costCodes as $costCode)
+							<option value="{{ $costCode->costcode }} :: {{ $costCode->costcodedesc }}">
+								{{ $costCode->costcode }} :: {{ $costCode->costcodedesc }}
+							</option>
+						@endforeach
 					</select>
 				</div>
 

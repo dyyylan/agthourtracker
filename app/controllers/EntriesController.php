@@ -6,7 +6,18 @@ class EntriesController extends BaseController {
 
 	// Display form for a new time entry
 	public function newEntry() {
-		$this->layout->content = View::make('entries.newEntry');
+		$jobNumbers = JobNumber::where('jobnumber', 'not like', '%eqp%')
+			->orderBy('jobnumber', 'DESC')
+			->get();
+		$costCodes = CostCode::all();
+
+		$data = array(
+			'jobNumbers' => $jobNumbers,
+			'costCodes' => $costCodes
+		);
+
+		$this->layout->title = 'New Entry';
+		$this->layout->content = View::make('entries.newEntry', $data);
 	}
 
 	// Create an entry record in the database
@@ -114,8 +125,16 @@ class EntriesController extends BaseController {
 			$calendar[$index]['entries'] = $user->entries()->where('date', '=', $day['date'])->get();
 		}
 
+		// Get the job numbers and cost codes
+		$jobNumbers = JobNumber::where('jobnumber', 'not like', '%eqp%')
+			->orderBy('jobnumber', 'DESC')
+			->get();
+		$costCodes = CostCode::all();
+
 		$data = array(
-			'calendar' => $calendar
+			'calendar' => $calendar,
+			'jobNumbers' => $jobNumbers,
+			'costCodes' => $costCodes
 		);		
 
 		$this->layout->title = 'My Calendar';
