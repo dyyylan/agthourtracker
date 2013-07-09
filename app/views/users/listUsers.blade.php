@@ -6,7 +6,6 @@
 
 <table class="table table-hover table-bordered">
 	<tr class="info">
-		<td><strong>id</strong></td>
 		<td><strong>Name</strong></td>
 		<td><strong>Email</strong></td>
 		<td><strong>Location</strong></td>
@@ -30,7 +29,6 @@
 
 	@foreach ($users as $user)
 		<tr>
-			<td>{{ $user->id }}</td>
 			<td>{{ $user->fname }} {{ $user->lname }}</td>
 			<td>{{ $user->email }}</td>
 			<td>{{ $user->location }}</td>
