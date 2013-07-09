@@ -12,7 +12,7 @@ class UsersController extends BaseController {
 			return Redirect::to('/');
 		}
 
-		$users = User::where('is_active', '=', 1)->get();
+		$users = User::where('is_active', '=', 1)->orderBy('fname')->get();
 
 		$data = array(
 			'users' => $users
@@ -48,7 +48,7 @@ class UsersController extends BaseController {
 	public function listUsers() {
 		$this->layout->title = 'User management';
 
-		$users = User::all();
+		$users = User::orderBy('is_active', 'DESC')->orderBy('fname')->get();
 
 		$data = array(
 			'users' => $users
