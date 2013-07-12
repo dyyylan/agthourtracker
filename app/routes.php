@@ -42,3 +42,7 @@ Route::post('/users/edit/{id}', array('uses' => 'UsersController@updateUser', 'b
 /*** UTILITIES ***/
 // Send reminder email to users to submit hours
 Route::get('/cron/reminder', array('uses' => 'EntriesController@sendReminderEmail'));
+
+/*** REST API ***/
+// Get list of cost codes for a selected job number
+Route::post('/api/v1/projects/cost_codes', array('uses' => 'ProjectsController@getCostCodesForProject', 'before' => array('auth')));

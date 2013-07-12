@@ -62,11 +62,11 @@
 
 				<div class="field">
 					<label for="job_number">Job number:</label>
-					<select name="job_number" id="job_number">
+					<select name="job_number" id="jobnumber_{{ $day['date'] }}" class="jobnumber">
 						<option value="">Select...</option>
 						@foreach ($jobNumbers as $jobNumber)
-							<option value="{{ $jobNumber->jobnumber }}">
-								{{ $jobNumber->jobnumber }} :: {{ $jobNumber->projectdescription }}
+							<option value="{{ $jobNumber->project_number }}">
+								{{ $jobNumber->project_number }} :: {{ $jobNumber->description }}
 							</option>
 						@endforeach
 					</select>
@@ -74,13 +74,9 @@
 
 				<div class="field">
 					<label for="cost_code">Cost code:</label>
-					<select name="cost_code" id="cost_code">
-						<option value="">Select...</option>
-						@foreach ($costCodes as $costCode)
-							<option value="{{ $costCode->costcode }} :: {{ $costCode->costcodedesc }}">
-								{{ $costCode->costcode }} :: {{ $costCode->costcodedesc }}
-							</option>
-						@endforeach
+					<img src="/assets/img/ajax-loader.gif" id="loader_{{ $day['date'] }}" class="butterbox" />
+					<select name="cost_code" id="costcode_{{ $day['date'] }}" class="costcode">
+						<option value="">Select a job number</option>
 					</select>
 				</div>
 

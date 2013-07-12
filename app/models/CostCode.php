@@ -1,5 +1,9 @@
 <?php
 
 class CostCode extends Eloquent {
-	protected $table = 'tbl_costcodes_agtcan';
+	
+	protected $table = 'costcodes_agtcan';
+
+	public function project() { return $this->belongsTo('Project', 'project_id'); }
+
 }

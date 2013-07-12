@@ -126,15 +126,11 @@ class EntriesController extends BaseController {
 		}
 
 		// Get the job numbers and cost codes
-		$jobNumbers = JobNumber::where('jobnumber', 'not like', '%eqp%')
-			->orderBy('jobnumber', 'DESC')
-			->get();
-		$costCodes = CostCode::all();
+		$jobNumbers = Project::where('project_number', 'NOT LIKE', '%eqp%')->orderBy('project_number', 'DESC')->get();
 
 		$data = array(
 			'calendar' => $calendar,
-			'jobNumbers' => $jobNumbers,
-			'costCodes' => $costCodes
+			'jobNumbers' => $jobNumbers
 		);		
 
 		$this->layout->title = 'My Calendar';
