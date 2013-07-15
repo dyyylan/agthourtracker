@@ -20,7 +20,7 @@
 	<tbody>
 		<?php $displayed = false; ?>
 		@foreach($entries as $entry)
-			@if ($entry->date < date('Y-m-d', strtotime('last monday')) && !$displayed)
+			@if ($entry->date < date('Y-m-d', strtotime('today ' . -(date('N') - 1) . ' days')) && !$displayed)
 				<tr class="info">
 					<td colspan="5">
 						<div class="text-center">

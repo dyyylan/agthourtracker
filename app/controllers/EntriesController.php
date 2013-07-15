@@ -82,7 +82,7 @@ class EntriesController extends BaseController {
 
 		// calculate total hours this week
 		$hoursThisWeek = 0;
-		$thisWeekStartDate = date('Y-m-d', strtotime('last monday'));
+		$thisWeekStartDate = date('Y-m-d', strtotime('today ' . -(date('N') - 1) . ' days'));
 		$thisWeekEndDate = date('Y-m-d', strtotime('this sunday'));
 
 		foreach ($entries as $entry) {
