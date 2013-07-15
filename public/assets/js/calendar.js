@@ -25,6 +25,7 @@ $(document).ready(function() {
 				if (result.error) {
 					alert('There was an error. Please try again.');
 				} else {
+					$(costCodeSelectId).append('<option value="">Select...</option>');
 					for (i = 0; i < result.costCodes.length; i++) {
 						costCode = result.costCodes[i].cost_code + " :: " + result.costCodes[i].description;
 						$(costCodeSelectId).append('<option value="' + costCode + '">' + costCode + '</option>');

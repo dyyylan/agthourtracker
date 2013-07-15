@@ -6,10 +6,10 @@ class EntriesController extends BaseController {
 
 	// Display form for a new time entry
 	public function newEntry() {
-		$jobNumbers = JobNumber::where('jobnumber', 'not like', '%eqp%')
-			->orderBy('jobnumber', 'DESC')
+		$jobNumbers = Project::where('project_number', 'not like', '%eqp%')
+			->orderBy('project_number', 'DESC')
 			->get();
-		$costCodes = CostCode::all();
+		$costCodes = CostCode::groupBy('cost_code')->get();
 
 		$data = array(
 			'jobNumbers' => $jobNumbers,

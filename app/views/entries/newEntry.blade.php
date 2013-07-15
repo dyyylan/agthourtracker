@@ -6,46 +6,47 @@
 <div class="well">
 
 <form method="post" action="/entries/new">
-<input type="hidden" name="_token" value="<?= csrf_token() ?>" />
+<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 <div class="field">
 	<label for="date">Date:</label>
-	<input type="date" name="date" id="date" value="<?= date('Y-m-d') ?>" />
+	<input type="date" name="date" id="date" value="{{ date('Y-m-d') }}" />
 </div>
 
 <div class="field">
 	<label for="hours">Duration:</label>
 	<select name="hours" id="hours">
 		<option value="0">Hours</option>
-		<?php for ($i = 0; $i < 13; $i++): ?>
-			<option value="<?= $i ?>"><?= $i ?> hours</option>
-		<?php endfor; ?>
+		@for ($i = 0; $i < 13; $i++)
+			<option value="{{ $i }}">{{ $i }} hours</option>
+		@endfor
 	</select>
 	<select name="minutes" id="minutes">
 		<option value="0">Minutes</option>
-		<?php for ($i = 0; $i < 60; $i+=15): ?>
-			<option value="<?= $i ?>"><?= $i ?> minutes</option>
-		<?php endfor; ?>
+		@for ($i = 0; $i < 60; $i += 15)
+			<option value="{{ $i }}">{{ $i }} minutes</option>
+		@endfor
 	</select>
 </div>
 
 <div class="field">
 	<label for="job_number">Job number:</label>
-	<select name="job_number" id="job_number">
+	<select name="job_number" class="jobnumber" id="jobnumber_1">
 		<option value="">Select...</option>
 		@foreach ($jobNumbers as $jobNumber)
-			<option value="{{ $jobNumber->jobnumber }}">{{ $jobNumber->jobnumber }} :: {{ $jobNumber->projectdescription }}</option>
+			<option value="{{ $jobNumber->project_number }}">{{ $jobNumber->project_number }} :: {{ $jobNumber->description }}</option>
 		@endforeach
 	</select>
 </div>
 
 <div class="field">
 	<label for="cost_code">Cost code:</label>
-	<select name="cost_code" id="cost_code">
+	<img src="/assets/img/ajax-loader.gif" id="loader_1" class="butterbox" />
+	<select name="cost_code" id="costcode_1">
 		<option value="">Select...</option>
 		@foreach ($costCodes as $costCode)
-			<option value="{{ $costCode->costcode }} :: {{ $costCode->costcodedesc }}">
-				{{ $costCode->costcode }} :: {{ $costCode->costcodedesc }}
+			<option value="{{ $costCode->cost_code }} :: {{ $costCode->description }}">
+				{{ $costCode->cost_code }} :: {{ $costCode->description }}
 			</option>
 		@endforeach
 	</select>
