@@ -27,6 +27,7 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a href="/users">User management</a></li>
+					<li><a href="/projects">Manage projects</a></li>
 				</ul>
 			</li>
 		@endif

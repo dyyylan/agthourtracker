@@ -11,6 +11,11 @@ class EntriesController extends BaseController {
 			->get();
 		$costCodes = CostCode::groupBy('cost_code')->get();
 
+		// Add additional job numbers and cost codes
+		$additionalJobNumbers = AdditionalProject::all();
+		$additionalCostCodes = AdditionalCostCode::all();
+		$jobNumbers = $jobNumbers->merge($additionalJobNumbers);
+
 		$data = array(
 			'jobNumbers' => $jobNumbers,
 			'costCodes' => $costCodes
@@ -127,6 +132,11 @@ class EntriesController extends BaseController {
 
 		// Get the job numbers and cost codes
 		$jobNumbers = Project::where('project_number', 'NOT LIKE', '%eqp%')->orderBy('project_number', 'DESC')->get();
+
+		// Add additional job numbers and cost codes
+		$additionalJobNumbers = AdditionalProject::all();
+		$additionalCostCodes = AdditionalCostCode::all();
+		$jobNumbers = $jobNumbers->merge($additionalJobNumbers);
 
 		$data = array(
 			'calendar' => $calendar,

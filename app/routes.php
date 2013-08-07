@@ -28,7 +28,6 @@ Route::post('/reports/jobhours', array('uses' => 'ReportsController@jobHoursRepo
 
 /*** USER MANAGEMENT ***/
 
-// Users
 Route::get('/login', array('uses' => 'UsersController@newSession'));
 Route::post('/login', array('uses' => 'UsersController@createSession', 'before' => 'csrf'));
 Route::get('/logout', array('uses' => 'UsersController@destroySession', 'before' => 'auth'));
@@ -37,6 +36,14 @@ Route::get('/users/new', array('uses' => 'UsersController@newUser', 'before' => 
 Route::post('/users/new', array('uses' => 'UsersController@createUser', 'before' => array('auth', 'csrf', 'admin')));
 Route::get('/users/edit/{id}', array('uses' => 'UsersController@editUser', 'before' => 'auth'));
 Route::post('/users/edit/{id}', array('uses' => 'UsersController@updateUser', 'before' => array('auth', 'csrf')));
+
+/*** ADDTL PROJECT MANAGEMENT ***/
+Route::get('/projects', array('uses' => 'ProjectsController@listProjects', 'before' => array('auth', 'admin')));
+Route::post('/projects/new', array('uses' => 'ProjectsController@createProject', 'before' => array('auth', 'admin', 'csrf')));
+Route::post('/projects/delete', array('uses' => 'ProjectsController@deleteProject', 'before' => array('auth', 'admin', 'csrf')));
+Route::get('/projects/edit/{id}', array('uses' => 'ProjectsController@editProject', 'before' => array('auth', 'admin')));
+Route::post('/projects/costcodes/add', array('uses' => 'ProjectsController@addCostCode', 'before' => array('auth', 'admin', 'csrf')));
+Route::post('/projects/costcodes/delete', array('uses' => 'ProjectsController@deleteCostCode', 'before' => array('auth', 'admin', 'csrf')));
 
 
 /*** UTILITIES ***/
