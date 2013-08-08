@@ -17,6 +17,7 @@
 	<tr class="info">
 		<td><strong>#</strong></td>
 		<td><strong>Name</strong></td>
+		<td><strong>Date</strong></td>
 		<td><strong>Job number</strong></td>
 		<td><strong>Cost code</strong></td>
 		<td><strong>Hours</strong></td>
@@ -27,6 +28,7 @@
 		<tr>
 			<td>{{ (isset($i)) ? ++$i : $i = 1 }}</td>
 			<td>{{ $userName }}</td>
+			<td>{{ date('m/d/Y', strtotime($entry->date)) }}</td>
 			<td>{{ $entry->job_number }}</td>
 			<td>{{ $entry->cost_code }}</td>
 			<td>{{ $entry->hours }}</td>
@@ -34,12 +36,36 @@
 		</tr>
 	@endforeach
 
+	@foreach ($totals as $jobNumber => $total)
+		<tr>
+			<td></td>
+			<td><strong>{{ $userName }}</strong></td>
+			<td><strong>Total</strong></td>
+			<td>{{ $jobNumber }}</td>
+			<td></td>
+			<td>{{ number_format($total, 2) }}</td>
+			<td>${{ number_format($total * $hourlyRate, 2) }}</td>
+		</tr>
+	@endforeach
+
+	@foreach ($prpsal as $week => $hours)
+		<tr>
+			<td></td>
+			<td><strong>{{ $userName }}</strong></td>
+			<td><strong>Total</strong></td>
+			<td><strong>PRPSAL</strong></td>
+			<td>Week {{ $week + 1 }}</td>
+			<td>{{ number_format($hours, 2) }}</td>
+			<td>${{ number_format($hours * $hourlyRate, 2) }}</td>
+		</tr>
+	@endforeach	
+
 	<tr>
 		<td></td>
 		<td><strong>{{ $userName }}</strong></td>
-		<td colspan="2"><strong>Total</strong></td>
-		<td><strong>{{ $totalHours }}</strong></td>
-		<td><strong>${{ number_format($totalHours * $hourlyRate, 2) }}</strong></td>
+		<td colspan="3"><strong>Grand total</strong></td>
+		<td><strong>{{ $calculatedHours }}</strong></td>
+		<td><strong>${{ number_format($calculatedHours * $hourlyRate, 2) }}</strong></td>
 	</tr>
 </table>
 

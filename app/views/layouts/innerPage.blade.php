@@ -9,8 +9,8 @@
 
     <!-- Le styles -->
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
-   <!--  <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/assets/css/bootswatch.css" rel="stylesheet"> -->
+    <link href="/assets/css/datepicker.css" rel="stylesheet">
+
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -107,7 +107,9 @@
     <script src="/assets/js/lib/bootstrap/bootstrap-collapse.js"></script>
     <script src="/assets/js/lib/bootstrap/bootstrap-carousel.js"></script>
     <script src="/assets/js/lib/bootstrap/bootstrap-typeahead.js"></script>
+    <script src="/assets/js/lib/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 
+    <script src="/assets/js/scripts.js"></script>
     <script src="/assets/js/calendar.js"></script>
 
   </body>

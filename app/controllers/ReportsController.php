@@ -103,7 +103,7 @@ class ReportsController extends BaseController {
 
 	// Get user input to generate a job costs report
 	public function jobCostsReportInput() {
-		$users = User::all();
+		$users = User::orderBy('fname')->get();
 
 		$data = array(
 			'users' => $users
@@ -130,14 +130,40 @@ class ReportsController extends BaseController {
 		$entries = Entry::where('date', '>=', $startDate)
 						->where('date', '<=', $endDate)
 						->where('user_id', '=', $userId)
+						->orderBy('job_number', 'asc')
 						->orderBy('date', 'desc')
 						->get();
 
+		$startWeekTwo = date('Y-m-d', strtotime('previous monday', strtotime($endDate)));
+
 		// Calculate the total hours for the pay period
 		$totalHours = 0;
+		$totalWeekOne = 0;
+		$totalWeekTwo = 0;
+		$totals = array();
 		foreach ($entries as $entry) {
 			$totalHours += $entry->hours;
+
+			$jobNumber = $entry->job_number;
+			if (!array_key_exists($jobNumber, $totals)) {
+				$totals[$jobNumber] = 0;
+			}
+			$totals[$jobNumber] += $entry->hours;
+
+			// add it to the appropriate week for PRPSAL calculations
+			if ($entry->date < $startWeekTwo) {
+				$totalWeekOne += $entry->hours;
+			} else {
+				$totalWeekTwo += $entry->hours;
+			}
 		}
+
+		$prpsal = array(
+			40 - $totalWeekOne,
+			40 - $totalWeekTwo
+		);
+
+		$calculatedHours = $totalHours + $prpsal[0] + $prpsal[1];
 
 		$data = array(
 			'userName' => $user->fname . ' ' . $user->lname,
@@ -145,6 +171,9 @@ class ReportsController extends BaseController {
 			'endDate' => $endDate,
 			'entries' => $entries,
 			'totalHours' => $totalHours,
+			'prpsal' => $prpsal,
+			'totals' => $totals,
+			'calculatedHours' => $calculatedHours,
 			'hourlyRate' => number_format($payAmount / 80, 3)
 		);
 

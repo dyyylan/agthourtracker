@@ -24,7 +24,7 @@
 
 <div class="field">
 	<p>Select the pay date at the end of the two-week period to be calculated:</p>
-	<input type="date" name="pay_date" id="pay_date" value="{{ date('Y-m-d', strtotime('last friday')) }}" />
+	<input type="text" name="pay_date" id="pay_date" value="{{ date('Y-m-d', strtotime('last friday')) }}" />
 </div>
 
 <div class="field">
