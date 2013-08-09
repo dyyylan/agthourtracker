@@ -174,7 +174,7 @@ class ReportsController extends BaseController {
 			'prpsal' => $prpsal,
 			'totals' => $totals,
 			'calculatedHours' => $calculatedHours,
-			'hourlyRate' => number_format($payAmount / 80, 3)
+			'hourlyRate' => $payAmount / 80
 		);
 
 		$this->layout->title = 'Job Costs Report';
