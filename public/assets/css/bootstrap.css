@@ -221,6 +221,22 @@ textarea {
   h3 {
     page-break-after: avoid;
   }
+  tbody td,
+  tbody th {
+    font-size: 10pt !important;
+    padding: 0 !important;
+  }
+  h1, h2, h3, h4, h5 {
+    font-size: 12pt !important;
+    margin: 0 !important;
+  }
+  p {
+    font-size: 9pt !important;
+    margin: 0 !important;
+  }
+  table, div {
+    margin: 0 !important;
+  }
 }
 
 body {
