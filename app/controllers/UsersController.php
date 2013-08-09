@@ -172,10 +172,17 @@ class UsersController extends BaseController {
 		if (!empty($newPassword)) {
 			$user->password = Hash::make(Input::get('password'));
 		}
-		$user->is_active = ($isActive == 'yes') ? 1 : 0;
-		$user->is_admin = ($isAdmin == 'yes') ? 1 : 0;
-		$user->receive_emails = ($receiveEmails == 'yes') ? 1 : 0;
-		$user->location = $location;
+
+		if (Auth::user()->is_admin) {
+			$user->is_active = ($isActive == 'yes') ? 1 : 0;
+			$user->is_admin = ($isAdmin == 'yes') ? 1 : 0;
+			$user->receive_emails = ($receiveEmails == 'yes') ? 1 : 0;
+			$user->location = $location;
+
+			$redirectPath = '/users';
+		} else {
+			$redirectPath = '/';
+		}
 
 		if ($user->save()) {
 			$type = 'success';
@@ -186,7 +193,7 @@ class UsersController extends BaseController {
 		}
 
 		Session::flash($type, $message);
-		return Redirect::to('/users/');
+		return Redirect::to($redirectPath);
 	}
 
 }
