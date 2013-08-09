@@ -9,7 +9,7 @@
 		<strong class="label">Pay period</strong> {{ date('F jS, Y', strtotime($startDate)) }} to {{ date('F jS, Y', strtotime($endDate)) }}
 	</p>
 	<p>
-		<strong class="label">Calculated hourly rate:</strong> ${{ number_format($hourlyRate, 2) }}
+		<strong class="label">Calculated hourly rate:</strong> ${{ number_format($hourlyRate, 3) }}
 	</p>
 </div>
 
