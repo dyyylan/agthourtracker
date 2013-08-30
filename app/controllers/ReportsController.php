@@ -145,6 +145,14 @@ class ReportsController extends BaseController {
 			$totalHours += $entry->hours;
 
 			$jobNumber = $entry->job_number;
+
+			// Separate EST jobs by cost code
+			if (preg_match('/(EST)/', $entry->job_number)) {
+				$cc = explode(' :: ', $entry->cost_code);
+				$costCode = $cc[0];
+				$jobNumber = $entry->job_number . ' :: ' . $costCode;
+			}
+
 			if (!array_key_exists($jobNumber, $totals)) {
 				$totals[$jobNumber] = 0;
 			}
