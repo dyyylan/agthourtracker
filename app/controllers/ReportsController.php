@@ -244,4 +244,15 @@ class ReportsController extends BaseController {
 		$this->layout->content = View::make('reports.jobHoursReportResult', $data);
 	}
 
+	public function allEntries() {
+		$entries = Entry::orderBy('id', 'desc')->paginate(100);
+
+		$data = array(
+			'entries' => $entries
+		);
+
+		$this->layout->title = 'All Entries';
+		$this->layout->content = View::make('reports.allEntries', $data);
+	}
+
 }

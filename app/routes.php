@@ -25,6 +25,9 @@ Route::post('/reports/jobcosts', array('uses' => 'ReportsController@jobCostsRepo
 Route::get('/reports/jobhours', array('uses' => 'ReportsController@jobHoursReportInput', 'before' => 'auth'));
 Route::post('/reports/jobhours', array('uses' => 'ReportsController@jobHoursReportResult', 'before' => array('auth', 'csrf')));
 
+// Entry listing
+Route::get('/reports/entries', array('uses' => 'ReportsController@allEntries', 'before' => 'auth'));
+
 
 /*** USER MANAGEMENT ***/
 
@@ -38,6 +41,7 @@ Route::get('/users/edit/{id}', array('uses' => 'UsersController@editUser', 'befo
 Route::post('/users/edit/{id}', array('uses' => 'UsersController@updateUser', 'before' => array('auth', 'csrf')));
 
 /*** ADDTL PROJECT MANAGEMENT ***/
+
 Route::get('/projects', array('uses' => 'ProjectsController@listProjects', 'before' => array('auth', 'admin')));
 Route::post('/projects/new', array('uses' => 'ProjectsController@createProject', 'before' => array('auth', 'admin', 'csrf')));
 Route::post('/projects/delete', array('uses' => 'ProjectsController@deleteProject', 'before' => array('auth', 'admin', 'csrf')));
@@ -47,9 +51,11 @@ Route::post('/projects/costcodes/delete', array('uses' => 'ProjectsController@de
 
 
 /*** UTILITIES ***/
+
 // Send reminder email to users to submit hours
 Route::get('/cron/reminder', array('uses' => 'EntriesController@sendReminderEmail'));
 
 /*** REST API ***/
+
 // Get list of cost codes for a selected job number
 Route::post('/api/v1/projects/cost_codes', array('uses' => 'ProjectsController@getCostCodesForProject', 'before' => array('auth')));

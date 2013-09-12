@@ -19,6 +19,7 @@
 				<li><a href="/reports/weekly/overview">Weekly reports</a></li>
 				<li><a href="/reports/jobcosts">Job costs report</a></li>
 				<li><a href="/reports/jobhours">Job hours report</a></li>
+				<li><a href="/reports/entries">List all entries</a></li>
 			</ul>
 		</li>
 

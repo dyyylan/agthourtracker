@@ -23,6 +23,13 @@
 		</p>
 		<p><a href="/reports/jobhours" class="btn">View &raquo;</a></p>
 	</div>
+
+	<div class="well report-description">
+		<h3>List All Entries</h3>
+		<p>
+			Displays a list of all entries in the database.
+		</p>
+		<p><a href="/reports/entries" class="btn">View &raquo;</a></p>
 </div>
 	
 
