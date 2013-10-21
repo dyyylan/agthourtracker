@@ -9,6 +9,7 @@ Route::get('/entries/view/{id}', array('uses' => 'EntriesController@showEntry', 
 Route::get('/entries/new', array('uses' => 'EntriesController@newEntry', 'before' => 'auth'));
 Route::post('/entries/new', array('uses' => 'EntriesController@createEntry', 'before' => array('auth', 'csrf')));
 Route::get('/entries/calendar', array('uses' => 'EntriesController@calendar', 'before' => 'auth'));
+Route::post('/entries/delete', array('uses' => 'EntriesController@deleteEntry', 'before' => array('auth', 'admin', 'csrf')));
 
 /*** REPORTS ***/
 

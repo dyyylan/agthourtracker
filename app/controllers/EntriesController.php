@@ -192,4 +192,22 @@ class EntriesController extends BaseController {
 		}
 	}
 
+	public function deleteEntry() {
+		$id = Input::get('id');
+		
+		$entry = Entry::find($id);
+
+		// Entry could not be found
+		if (!$entry) {
+			Session::flash('error', 'Could not find an entry with that id.');
+			return Redirect::to('/reports/entries');
+		}
+
+		// Delete the entry
+		$entry->delete();
+		Session::flash('success', 'Entry successfully deleted.');
+
+		return Redirect::to('/reports/entries');
+	}
+
 }
