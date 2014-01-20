@@ -216,22 +216,27 @@ class ReportsController extends BaseController {
 			$userId = $entry->user_id;
 
 			if (isset($results[$userId])) {
-				$results[$userId] += $entry->hours;
+				$results[$userId]['hours'] += $entry->hours;
+				$results[$userId]['entries'][] = $entry;
 			} else {
-				$results[$userId] = $entry->hours;
+				$results[$userId] = array(
+					'hours' => $entry->hours,
+					'entries' => array($entry)
+				);
 			}
 		}
 
 		// Format the results into a nicer array with user's name
 		$totalHours = 0;
-		foreach ($results as $userId => $hours) {
+		foreach ($results as $userId => $result) {
 			$user = User::find($userId);
 			$report[$userId] = array(
-				'name' => $user->fname . ' ' . $user->lname,
-				'hours' => $hours
+				'user' => $user,
+				'hours' => $result['hours'],
+				'entries' => $result['entries']
 			);
 
-			$totalHours += $hours;
+			$totalHours += $result['hours'];
 		}
 
 		$data = array(

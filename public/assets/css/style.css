@@ -90,3 +90,11 @@
 .job-hours-report {
 	width: 60%;
 }
+
+.show-hours {
+	cursor: pointer;
+}
+
+.show-hours:hover {
+	background: #CEF2EB;
+}
