@@ -62,6 +62,12 @@ class EntriesController extends BaseController {
 			return Redirect::to($redirect)->withErrors($validator);
 		}
 
+		// Fail if date is empty
+		if ($input['date'] === '0000-00-00') {
+			Session::flash('error', 'You must select a date');
+			return Redirect::to($redirect);
+		}
+
 		// Create the record to be saved to db
 		$entry = new Entry;
 		$entry->user_id = $user->id;
